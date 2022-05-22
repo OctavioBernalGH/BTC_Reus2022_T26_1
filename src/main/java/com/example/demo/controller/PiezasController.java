@@ -28,7 +28,7 @@ public class PiezasController {
 
 	// Buscar las piezas por id
 	@GetMapping("/piezas/{id}")
-	public Piezas buscarSalaCodigo(@PathVariable(name= "id")Long codigo) {
+	public Piezas buscarPiezaCodigo(@PathVariable(name= "id")Long codigo) {
 		return piezasServiceImpl.buscarPiezas(codigo);		
 	}
 
@@ -61,6 +61,5 @@ public class PiezasController {
 		modificado = piezasServiceImpl.modificarPiezas(pieza_a_modificar);
 
 		return modificado;
-
 	}
 }
