@@ -7,8 +7,6 @@
 </table>
 
 [![Java](https://img.shields.io/badge/Java-FrontEnd-informational)]()
-[![JBuilder](https://img.shields.io/badge/JBuilder-View-critical)]()
-[![JUnit 5](https://img.shields.io/badge/JUnit%205-Testing-success)]()
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-lightgrey)]()
 [![SQL](https://img.shields.io/badge/SQL-DataBase-yellowgreen)]()
 [![Spring](https://img.shields.io/badge/Spring-infrastructure-brightgreen)]()
@@ -706,10 +704,10 @@ Para finalizar la parte java faltará crear los controladores, para ello en la c
 	
 Para finalizar con la explicación de las anotaciones se utilizarán los mapeos de método HTTP, dichas anotaciones son:
 	
-@GetMapping("/ruta api") --> Método utilizado para obtener datos.
-@PostMapping("/ruta api") --> Método utilizado para crear algún tipo de registro.
-@PutMapping("/ruta api") --> Método para actualizar registros.
-@DeleteMapping("/ruta api") --> Método para eliminar un registro.
+@GetMapping("/ruta api") --> Método utilizado para obtener datos.<br>
+@PostMapping("/ruta api") --> Método utilizado para crear algún tipo de registro.<br>
+@PutMapping("/ruta api") --> Método para actualizar registros.<br>
+@DeleteMapping("/ruta api") --> Método para eliminar un registro.<br>
 	
 A continuación se generan los desplegables que hacen referencia a los controladores creados:
 	
@@ -954,4 +952,74 @@ public class SuministraController {
 	
 </details>
 
-A estas alturas lo único que quedará será verificar el funcionamiento del aplicativo, para ello se utilizará postman para testear los endpoints de cada entidad.
+A estas alturas lo único que quedará será verificar el funcionamiento del aplicativo, para ello se utilizará postman para testear los endpoints de cada entidad. Lo primero de todo será proceder con la comprobación de obtener todos los datos de piezas, proveedor y suministra, para ello se utilizará el método HTTP GET apuntando a la dirección del controlador referente a listar. En las siguientes tres imagenes se muestra el resultado:
+
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170089654-f9063139-be58-470e-884b-391d3e40b3e1.PNG">
+</p>
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170089662-43dc2b2a-47b3-4eea-b712-e66a2fcc33a6.PNG">
+</p>
+
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170089666-d422768d-cf6d-4136-8fe2-44fe7d909fc2.PNG">
+</p>
+
+La siguiente verificación pasará por el endpoint de buscar un componente por identificador, para ello se utilizará el método HTTP GET apuntando a la dirección del controlador referente a listar. En las siguientes tres imagenes se muestra el resultado:
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170090450-44d94fc8-d193-4d9d-9359-67ce440b0d67.PNG">
+</p>
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170090485-5a5efd62-50a2-4377-9c7b-be92a52d9f1d.PNG">
+</p>
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170090552-0b349b3a-f1e9-423a-812e-075597dbcdef.PNG">
+</p>
+	
+El siguiente procedimiento de verificación constará de apuntar al endpoint de modificación de datos de entidad para ello se utilizará el método HTTP PUT indicando en la URI del endpoint el identificador del componentes y introduciendo en el body los datos a modificar en JSON. Se muestra el ejemplo en las siguientes capturas de pantalla:
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170090843-8b444ee2-29ca-4183-9b6d-11fb32f77edf.PNG">
+</p>
+
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170090988-51d20663-23cc-4781-b7ce-c1be7823e4df.PNG">
+</p>
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170091034-e4de542d-b248-4a36-9c57-23fa42b6b1ed.PNG">
+</p>
+
+A continuación se verificará la eliminación de registros de las diferentes tablas, para ello se utilizará el método HTTP DELETE apuntando al endpoint correspondiente, en este caso también se pedirá al usuario que introduzca el identificador del componente a eliminar, al ser de tipo void no mostrará nada por pantalla, para mostrar correctamente la eliminación se muestra en consola un mensaje. Se puede visualizar el ejemplo en las diferentes capturas:
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170091387-04e19388-2a0a-4249-942d-6ee02c02f1f4.PNG">
+</p>
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170091427-1d39bf6a-a1ae-4ace-85a8-e62591cd15f5.PNG">
+</p>
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170091477-7e3c65c2-3029-4538-8c7d-dc45fb9b6929.PNG">
+</p>
+	
+Por último verificar la creación de nuevos elementos en las diferentes tablas, para ello se utiliza el método HTTP POST seguido de la ruta del endpoint, se ha de especificar en el body los datos del nuevo componente a crear. En las siguientes capturas se observa un ejemplo:
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170091732-9b2385e6-8154-4703-8bfc-dd51b4a83fad.PNG">
+</p>
+
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170091788-890e2747-61a3-4113-9c28-b712dfc6b9ec.PNG">
+</p>
+	
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/103035621/170091849-055e6789-098a-4070-b55c-c9d51198604c.PNG">
+</p>
+	
+La actividad se da por finalizada, como observación es muy importante el uso de las anotaciones, la estructura de proyecto y la correcta nomenclatura puesto que un error en la tipografía puede provocar que no funciones los endpoints.
