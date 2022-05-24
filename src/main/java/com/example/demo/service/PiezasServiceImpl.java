@@ -30,14 +30,14 @@ public class PiezasServiceImpl implements PiezasService{
 	}
 
 	@Override
-	public void eliminarPiezas(Long codigo) {
-		piezasDao.deleteById(codigo);
+	public void eliminarPiezas(Long id) {
+		piezasDao.deleteById(id);
 		
 	}
 
 	@Override
-	public Piezas buscarPiezas(Long codigo) {
-		return piezasDao.findById(codigo).get();
+	public Piezas buscarPiezas(Long id) {
+		return piezasDao.findById(id).get();
 	}
 	
 	

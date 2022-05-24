@@ -12,8 +12,8 @@ public interface PiezasService {
 
 	public Piezas modificarPiezas(Piezas piezas);
 
-	public void eliminarPiezas(Long codigo);
+	public void eliminarPiezas(Long id);
 
-	public Piezas buscarPiezas(Long codigo);
+	public Piezas buscarPiezas(Long id);
 	
 }
