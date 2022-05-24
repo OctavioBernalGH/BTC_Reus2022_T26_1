@@ -386,3 +386,318 @@ public class Suministra {
 ```
   
 </details>
+	
+Una vez definidas las entidades del paquete DTO se procederá a la creación de las interfaces DAO, dichas interfaces heredan los métodos CRUD básicos del repositorio Jpa, para ello las tres interfaces extenderan JpaRepository. Jpa proporciona un modelo de datos genérico referente al CRUD. También se definira la anotación @Repository para indicar el acceso a la base de datos. En el siguiente cuadro de texto se muestra el código generado en los diferentes DAO , se ubica todo en este cuadro debido a la escaséz de código.
+	
+```java
+	
+package com.example.demo.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.dto.Piezas;
+
+@Repository
+//Repositorio de funcion es de base de datos
+public interface PiezasDAO extends JpaRepository<Piezas,Long>{
+
+}
+
+package com.example.demo.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.dto.Proveedores;
+
+@Repository
+//Repositorio de funcion es de base de datos
+public interface ProveedoresDAO extends JpaRepository<Proveedores,Long>{
+
+}
+
+package com.example.demo.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.dto.Suministra;
+
+@Repository
+//Repositorio de funcion es de base de datos
+public interface SuministraDAO extends JpaRepository<Suministra,Long>{
+
+}
+
+```
+
+Se proseguirá creando las interfaces de los métodos que se utilizarán en la capa service, en este caso serán 3 interfaces, la de piezas, proveedores y suministra. En dichas interfaces se generará la cabecera de los métodos que implementarán las diferentes clases de la capa service y que posteriormente se desarrollarán y mapearán en los controladores, a continuación se introduce el código generado para las interfaces en desplegables.
+	
+<details>
+	
+<summary>Interface Piezas</summary>
+	
+<br>
+	
+```java
+	
+package com.example.demo.service;
+
+import java.util.List;
+
+import com.example.demo.dto.Piezas;
+
+
+public interface PiezasService {
+	public List<Piezas> listarPiezas();
+	
+	public Piezas crearPiezas(Piezas piezas);
+
+	public Piezas modificarPiezas(Piezas piezas);
+
+	public void eliminarPiezas(Long id);
+
+	public Piezas buscarPiezas(Long id);
+	
+}
+	
+```
+	
+</details>
+	
+	
+<details>
+	
+<summary>Interface Proveedores</summary>
+	
+<br>
+	
+```java
+	
+package com.example.demo.service;
+
+import java.util.List;
+
+import com.example.demo.dto.Proveedores;
+
+public interface ProveedoresService {
+public List<Proveedores> listarProveedores();
+	
+	public Proveedores crearProveedores(Proveedores proveedores);
+
+	public Proveedores modificarProveedores(Proveedores proveedores);
+
+	public void eliminarProveedores(Long id);
+
+	public Proveedores buscarProveedores(Long id);
+
+}
+	
+```
+	
+</details>
+	
+	
+<details>
+	
+<summary>Interfaz Suministra</summary>
+	
+<br>
+	
+```java
+	
+package com.example.demo.service;
+
+import java.util.List;
+
+
+import com.example.demo.dto.Suministra;
+
+public interface SuministraService {
+	public List<Suministra> listarSuministra();
+
+	public Suministra crearSuministra(Suministra suministra);
+
+	public Suministra modificarSuministra(Suministra suministra);
+
+	public void eliminarSuministra(Long id);
+
+	public Suministra buscarSuministra(Long id);
+}
+	
+```
+	
+</details>
+	
+Completadas ya las interfaces se procederá a la creación de las clases que las implementarán. Una vez credas se definirá la anotación @Service indicando que esta clase pertenece a la capa de servicios y la anotación @Autowired que inyectará las dependencias del Jpa heredadas del dao. Una vez definido el 'implements' en la cabecera de la clase, eclipse pedirá aplicar los métodos de las interfaces.
+	
+Se rellenará el cuerpo de los métodos con los recibidos por Jpa, Jpa tiene funciones própias de CRUD, a continuación hay tres desplegables con el código generado en las diferentes clases de la capa service.
+	
+<details>
+	
+<summary>Clase Service de Piezas</summary>
+
+<br>
+
+```java
+	
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dao.PiezasDAO;
+import com.example.demo.dto.Piezas;
+
+@Service
+public class PiezasServiceImpl implements PiezasService{
+	// Utilizar metodos DAO heredados de JPA
+	@Autowired
+	PiezasDAO piezasDao;
+
+	@Override
+	public List<Piezas> listarPiezas() {
+		return piezasDao.findAll();
+	}
+
+	@Override
+	public Piezas crearPiezas(Piezas piezas) {
+		return piezasDao.save(piezas);
+	}
+
+	@Override
+	public Piezas modificarPiezas(Piezas piezas) {
+		return piezasDao.save(piezas);
+	}
+
+	@Override
+	public void eliminarPiezas(Long id) {
+		piezasDao.deleteById(id);
+		
+	}
+
+	@Override
+	public Piezas buscarPiezas(Long id) {
+		return piezasDao.findById(id).get();
+	}
+	
+	
+}
+```
+	
+</details>
+	
+	
+<details>
+	
+<summary>Clase Service de Proveedores</summary>
+
+<br>
+
+```java
+
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dao.ProveedoresDAO;
+import com.example.demo.dto.Proveedores;
+
+@Service
+public class ProveedoresServiceImpl implements ProveedoresService{
+	// Utilizar metodos DAO heredados de JPA
+	@Autowired
+	ProveedoresDAO proveedoresDao;
+
+	@Override
+	public List<Proveedores> listarProveedores() {
+		return proveedoresDao.findAll();
+	}
+
+	@Override
+	public Proveedores crearProveedores(Proveedores proveedores) {
+		return proveedoresDao.save(proveedores);
+	}
+
+	@Override
+	public Proveedores modificarProveedores(Proveedores proveedores) {
+		return proveedoresDao.save(proveedores);
+	}
+
+	@Override
+	public void eliminarProveedores(Long id) {
+		proveedoresDao.deleteById(id);
+		
+	}
+
+	@Override
+	public Proveedores buscarProveedores(Long id) {
+		return proveedoresDao.findById(id).get();
+	}	
+}
+	
+```
+	
+</details>
+	
+	
+<details>
+	
+<summary>Clase Service de Suministra</summary>
+
+<br>
+
+```java
+
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dao.SuministraDAO;
+import com.example.demo.dto.Suministra;
+
+@Service
+public class SuministraServiceImpl implements SuministraService{
+	// Utilizar metodos DAO heredados de JPA
+	@Autowired
+	SuministraDAO suministraDao;
+
+	@Override
+	public List<Suministra> listarSuministra() {
+		return suministraDao.findAll();
+	}
+
+	@Override
+	public Suministra crearSuministra(Suministra suministra) {
+		return suministraDao.save(suministra);
+	}
+
+	@Override
+	public Suministra modificarSuministra(Suministra suministra) {
+		return suministraDao.save(suministra);
+	}
+
+	@Override
+	public void eliminarSuministra(Long id) {
+		suministraDao.deleteById(id);
+		
+	}
+
+	@Override
+	public Suministra buscarSuministra(Long id) {
+		return suministraDao.findById(id).get();
+	}
+}
+	
+```
+	
+</details>
